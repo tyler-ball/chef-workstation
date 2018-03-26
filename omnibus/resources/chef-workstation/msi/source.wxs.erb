@@ -58,8 +58,8 @@
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLROOT" Name="Chef">
-          <Directory Id="INSTALLLOCATION" Name="Workstation">
+        <Directory Id="PROJECTLOCATION" Name="Chef">
+          <Directory Id="PROJECTINSTALLPATH" Name="Workstation">
             <Directory Id="PROJECTLOCATIONBIN" Name="bin">
               <Component Id="ChefWorkstationPath" Guid="{BC744260-FD5B-4A0F-8EE5-76283072CC09}" >
                 <Environment Id="Environment"
@@ -72,10 +72,8 @@
     </Directory>
 
     <!-- Set the components defined in our fragment files that will be used for our feature  -->
-    <Feature Id="ChefWorkstationFeature" Title="!(loc.FeatureMainName)"
-      Absent="disallow" AllowAdvertise="no" Level="1"
-      ConfigurableDirectory="INSTALLLOCATION">
-      <ComponentGroupRef Id="INSTALLLOCATION" />
+    <Feature Id="ChefWorkstationFeature" Title="!(loc.FeatureMainName)" Absent="disallow" AllowAdvertise="no" Level="1" ConfigurableDirectory="INSTALLLOCATION">
+      <ComponentGroupRef Id="ProjectDir" />
       <ComponentRef Id="ChefWorkstationPath" />
     </Feature>
 
