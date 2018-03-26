@@ -22,7 +22,7 @@
     -->
     <% if fastmsi %>
     <SetProperty Id="FastUnzip"
-                 Value="FASTZIPDIR=[INSTALLLOCATION];FASTZIPAPPNAME=chef_workstation"
+                 Value="FASTZIPDIR=[INSTALLLOCATION];FASTZIPAPPNAME=workstation"
                  Sequence="execute"
                  Before="FastUnzip" />
 
@@ -38,7 +38,7 @@
 
     <CustomAction Id="Cleanup"
                   Directory="INSTALLLOCATION"
-                  ExeCommand="cmd /C &quot;rd /S /Q chef_workstation&quot;"
+                  ExeCommand="cmd /C &quot;rd /S /Q workstation&quot;"
                   Execute="deferred"
                   Impersonate="no"
                   Return="ignore" />
@@ -57,9 +57,9 @@
     <CustomActionRef Id="WixBroadcastEnvironmentChange" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="ProgramFiles64Folder">
         <Directory Id="INSTALLLOCATION" Name="chef">
-          <Directory Id="PROJECTLOCATION" Name="chef-workstation">
+          <Directory Id="PROJECTLOCATION" Name="workstation">
             <Directory Id="PROJECTLOCATIONBIN" Name="bin">
               <Component Id="ChefWorkstationPath" Guid="{BC744260-FD5B-4A0F-8EE5-76283072CC09}" >
                 <Environment Id="Environment"

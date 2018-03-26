@@ -26,7 +26,7 @@ license_file "../LICENSE"
 # and /opt/chef-workstation on all other platforms
 # if
 if windows?
-  install_dir "#{default_root}/opscode/#{name}"
+  install_dir "#{default_root}/PROGRA~1/chef/workstation"
 else
   install_dir "#{default_root}/#{name}"
 end
