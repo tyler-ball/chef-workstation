@@ -10,25 +10,10 @@
   -->
   <Product Id="*" Name="!(loc.ProductName) v$(var.DisplayVersionNumber)" Language="!(loc.LANG)"
           Version="$(var.VersionNumber)" Manufacturer="!(loc.ManufacturerName)" UpgradeCode="$(var.UpgradeCode)">
-
-    <!--
-      Minimum installer version (2.0) - Window XP and above.
-      The install scope is per machine, not the current user
-    -->
     <Package InstallerVersion="200" InstallPrivileges="elevated"
              Compressed="yes" InstallScope="perMachine" />
 
     <Media Id="1" Cabinet="ChefWorkstation.cab" EmbedCab="yes" CompressionLevel="high" />
-
-    <!--
-      Uncomment launch condition below to check for minimum OS
-      601 = Windows 7/Server 2008R2.
-    -->
-    <!-- Condition Message="!(loc.MinimumOSVersionMessage)">
-      <![CDATA[Installed OR VersionNT >= 601]]>
-    </Condition -->
-
-    <!-- We always do Major upgrades -->
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
 
     <!--
@@ -72,16 +57,16 @@
     <CustomActionRef Id="WixBroadcastEnvironmentChange" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
-    <Directory Id="WindowsVolume">
-
-        <Directory Id="INSTALLLOCATION" Name="opscode"> <!-- TODO - why not Chef -->
-
-        <Directory Id="PROJECTLOCATION" Name="chef_workstation"> <!-- TODO - why not Workstation -->
-            <Directory Id="PROJECTLOCATIONBIN" Name="bin">
-              <Component Id="ChefWorkstationPath" Guid="{BC744260-FD5B-4A0F-8EE5-76283072CC09}" >
-                <Environment Id="Environment"
-                             Name="PATH" Action="set" Part="last" System="yes" Value="[PROJECTLOCATIONBIN]" />
-              </Component>
+      <Directory Id="WindowsVolume">
+        <Directory Id="ProgramFilesFolder">
+          <Directory Id="INSTALLLOCATION" Name="Chef">
+            <Directory Id="PROJECTLOCATION" Name="Workstation">
+              <Directory Id="PROJECTLOCATIONBIN" Name="bin">
+                <Component Id="ChefWorkstationPath" Guid="{BC744260-FD5B-4A0F-8EE5-76283072CC09}" >
+                  <Environment Id="Environment"
+                    Name="PATH" Action="set" Part="last" System="yes" Value="[PROJECTLOCATIONBIN]" />
+                </Component>
+              </Directory>
             </Directory>
           </Directory>
         </Directory>
@@ -90,7 +75,7 @@
 
     <!-- Set the components defined in our fragment files that will be used for our feature  -->
     <Feature Id="ChefWorkstationFeature" Title="!(loc.FeatureMainName)" Absent="disallow" AllowAdvertise="no" Level="1" ConfigurableDirectory="INSTALLLOCATION">
-      <ComponentGroupRef Id="ProjectDir" />
+      <ComponentGroupRef Id="PROJECTLOCATION" />
       <ComponentRef Id="ChefWorkstationPath" />
     </Feature>
 
