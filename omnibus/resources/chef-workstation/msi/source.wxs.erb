@@ -57,16 +57,14 @@
     <CustomActionRef Id="WixBroadcastEnvironmentChange" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="WindowsVolume">
-        <Directory Id="ProgramFilesFolder">
-          <Directory Id="INSTALLLOCATION" Name="Chef">
-            <Directory Id="PROJECTLOCATION" Name="Workstation">
-              <Directory Id="PROJECTLOCATIONBIN" Name="bin">
-                <Component Id="ChefWorkstationPath" Guid="{BC744260-FD5B-4A0F-8EE5-76283072CC09}" >
-                  <Environment Id="Environment"
-                    Name="PATH" Action="set" Part="last" System="yes" Value="[PROJECTLOCATIONBIN]" />
-                </Component>
-              </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Name="Chef">
+          <Directory Id="INSTALLLOCATION" Name="Workstation">
+            <Directory Id="PROJECTLOCATIONBIN" Name="bin">
+              <Component Id="ChefWorkstationPath" Guid="{BC744260-FD5B-4A0F-8EE5-76283072CC09}" >
+                <Environment Id="Environment"
+                  Name="PATH" Action="set" Part="last" System="yes" Value="[PROJECTLOCATIONBIN]" />
+              </Component>
             </Directory>
           </Directory>
         </Directory>
@@ -74,7 +72,9 @@
     </Directory>
 
     <!-- Set the components defined in our fragment files that will be used for our feature  -->
-    <Feature Id="ChefWorkstationFeature" Title="!(loc.FeatureMainName)" Absent="disallow" AllowAdvertise="no" Level="1" ConfigurableDirectory="INSTALLLOCATION">
+    <Feature Id="ChefWorkstationFeature" Title="!(loc.FeatureMainName)"
+      Absent="disallow" AllowAdvertise="no" Level="1"
+      ConfigurableDirectory="INSTALLLOCATION">
       <ComponentGroupRef Id="PROJECTLOCATION" />
       <ComponentRef Id="ChefWorkstationPath" />
     </Feature>
