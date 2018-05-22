@@ -1,0 +1,41 @@
+---
+driver:
+  name: ec2
+  instance_type: c4.large
+  tags:
+    X-Contact: <%= ENV['USER'] %>
+    X-Application: "chef workstation"
+    X-Dept: "Workstation"
+    X-Customer: "n/a"
+    X-Project: "chef workstation"
+    X-TTL: 4
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+transport:
+  ssh_key: "~/.ssh/cheeseplus-oregon.pem"
+
+platforms:
+  - name: amazon-2
+  - name: centos-6
+  - name: centos-7
+  - name: rhel-6
+  - name: rhel-7
+  # - name: debian-9
+  - name: sles-12
+  - name: ubuntu-14.04
+  - name: ubuntu-18.04
+  - name: ubuntu-16.04
+  - name: windows-2012r2
+  - name: windows-
+
+
+suites:
+  - name: default
+    run_list:
+      - recipe[cws]
+    attributes:

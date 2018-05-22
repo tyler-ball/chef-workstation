@@ -2,6 +2,7 @@
 test_results/
 tags
 .DS_Store
+.kitchen/
 
 # chef.sh website
 www/site/public
