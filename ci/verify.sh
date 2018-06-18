@@ -5,5 +5,8 @@ set -e
 # chef version ensures our bin ends up on path and the basic ruby env is working.
 chef-run --version
 
+# Test
+chef-run version
+
 # Ensure our ChefDK works
 chef env
