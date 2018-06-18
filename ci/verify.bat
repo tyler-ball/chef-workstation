@@ -5,7 +5,16 @@ REM ; package is working correctly after install.
 
 REM ; chef-run version ensures our bin ends up on path and the basic ruby env is
 REM ; working.
-call chef-run version
+chef-run --version || goto :error
 
 REM ; Ensure our ChefDK works
 chef env
+
+REM ; Test
+chef-run version || goto :error
+
+goto :EOF
+
+:error
+echo Failed with error #%errorlevel%.
+exit /b %errorlevel%
