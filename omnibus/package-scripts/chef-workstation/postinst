@@ -35,6 +35,22 @@ for binary in $binaries; do
   ln -sf $INSTALLER_DIR/bin/$binary $PREFIX/bin || error_exit "Cannot link $binary to $PREFIX/bin"
 done
 
+if is_darwin; then
+  echo "TODO: mac CWA setup is not implemented"
+else
+  cwa_path ="$INSTALLER_DIR/components/chef-workstation-app/chef-workstation-app"
+
+  # TODO - is ldd available by default on target linux systems?
+  # 0 rc means grep found 'not found' text - and we have missing deps.
+  ldd $cwa_path | grep "not found" > /dev/null  2>&1
+  if [ $? -eq 0 ]; then
+    echo "This system is missing dependencies required for the desktop Chef Workstation App. It will not be available on this node."
+  else
+    ln -sf $app_path $PREFIX/bin
+  fi
+fi
+
+
 echo "Thank you for installing Chef Workstation!"
 echo "You can find some tips on getting started at https://chef.sh/"
 
