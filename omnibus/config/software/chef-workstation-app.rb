@@ -33,6 +33,17 @@ if linux?
   whitelist_file(/components\/chef-workstation-app\/chef-workstation-app/)
 end
 
+# These electron dependencies are pulled in/created
+# by this build. They may have dependendcies that aren't met
+# on the install target - in which case the tray application
+# will not be runnable.  That does not affect the rest of
+# the chef-workstation installation, so we will whitelist the
+# dependencies to allow it to continue in any case.
+if linux?
+  whitelist_file(/components\/chef-workstation-app\/libffmpeg\.so/)
+  whitelist_file(/components\/chef-workstation-app\/chef-workstation-app/)
+end
+
 build do
   block "do_build" do
     env = with_standard_compiler_flags(with_embedded_path)
