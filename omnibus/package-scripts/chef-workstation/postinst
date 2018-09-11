@@ -36,7 +36,9 @@ for binary in $binaries; do
 done
 
 if is_darwin; then
-  echo "TODO: mac CWA setup is not implemented"
+  cwa_path="$INSTALLER_DIR/components/chef-workstation-app/"
+  echo "Moving Chef Workstation App to the Applications folder"
+  sudo cp -R "$cwa_path/Chef Workstation App.app" /Applications
 else
   cwa_path ="$INSTALLER_DIR/components/chef-workstation-app/chef-workstation-app"
 

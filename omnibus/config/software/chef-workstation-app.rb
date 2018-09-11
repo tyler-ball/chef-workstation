@@ -20,7 +20,7 @@ skip_transitive_dependency_licensing
 license_file "LICENSE"
 
 source git: "https://github.com/chef/chef-workstation-tray"
-default_version "SHACK-353/windows-ws-app-setup"
+default_version "SHACK-352/osx-builds"
 # TODO: "master"
 
 # These electron dependencies are pulled in/created
@@ -45,7 +45,7 @@ build do
     env[path_key] = "#{env[path_key]}#{separator}#{node_bin_path}"
 
     platform_name, artifact_name = if mac_os_x?
-                                     ["mac", "Chef Workstation App-#{app_version}-mac.zip"]
+                                     ["mac", "mac"]
                                    elsif linux?
                                      ["linux", "linux-unpacked"]
                                    elsif windows?
@@ -66,11 +66,6 @@ build do
     command "#{npm_bin} install", env: env
     command "#{npm_bin} run-script build-#{platform_name}", env: env
 
-    if mac?
-      target = File.join(app_install_path, "chef-workstation-app-#{platform_name}.zip")
-      copy artifact_path, target
-    else
-      sync artifact_path, app_install_path
-    end
+    sync artifact_path, app_install_path
   end
 end
