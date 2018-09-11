@@ -20,8 +20,7 @@ skip_transitive_dependency_licensing
 license_file "LICENSE"
 
 source git: "https://github.com/chef/chef-workstation-tray"
-default_version "SHACK-353/windows-ws-app-setup"
-# TODO: "master"
+default_version "master"
 
 build do
   block "do_build" do
