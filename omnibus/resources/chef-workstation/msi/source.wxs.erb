@@ -134,16 +134,16 @@
 				<Component Id="PowershellStartMenuShortcut" Guid="{6DD3FFF3-E009-40E7-B1C2-EF606B941CCD}">
 					<Shortcut Id="PowershellStartMenuShortcutDef"
 						Name="!(loc.ChefWSPowershellShortcutDefName)"
-						Description="!(loc.ChefWSPowershellShortcutDefDescription)"
+						Description="!(loc.ChefWSPowershellShortcutDefDesc)"
 						Target="[WindowsFolder]\System32\WindowsPowerShell\v1.0\powershell.exe"
 						Arguments="-NoProfile -ExecutionPolicy Bypass -File [#StartChefWSScript]"
 						Show="minimized"
 						Icon="cws.ico"/>
 				</Component>
 				<Component Id="ChefWSAppStartMenuShortcut" Guid="{6CFD92E5-B45F-48F2-AC17-54B647D65E66}">
-					<Shortcut Id="ChefAppWSDesktopShortcutDef"
+					<Shortcut Id="ChefWSAppStartMenuShortcutDef"
 						Name="!(loc.ChefWSAppShortcutName)"
-						Description="!(loc.ChefWSAppShortcutDescription)"
+						Description="!(loc.ChefWSAppShortcutDesc)"
 						Target="[WSAPPDIR]\Chef Workstation App.exe"
 						Icon="cws.ico"/>
 				</Component>
@@ -154,7 +154,7 @@
 				<Component Id="ChefWSAppAutostartShortcut" Guid="{DF9613D2-4BCA-4D81-8BFA-989070EF1633}">
 					<Shortcut Id="ChefAppWSAutostartShortcutDef"
 						Name="!(loc.ChefWSAppShortcutName)"
-						Description="!(loc.ChefWSAppShortcutDescription)"
+						Description="!(loc.ChefWSAppShortcutDesc)"
 						Target="[WSAPPDIR]\Chef Workstation App.exe"
 						Icon="cws.ico"/>
 				</Component>
@@ -164,16 +164,16 @@
 				<Component Id="PowershellDesktopShortcut" Guid="{396E22A6-A7B6-4AA1-B63C-83A3DD7007A8}">
 					<Shortcut Id="PowershellDesktopShortcutDef"
 						Name="!(loc.ChefWSPowershellShortcutDefName)"
-						Description="!(loc.ChefWSPowershellShortcutDefDescription)"
+						Description="!(loc.ChefWSPowershellShortcutDefDesc)"
 						Target="[WindowsFolder]\System32\WindowsPowerShell\v1.0\powershell.exe"
 						Arguments="-NoProfile -ExecutionPolicy Bypass -File [#StartChefWSScript]"
 						Show="minimized"
 						Icon="cws.ico"/>
 				</Component>
 				<Component Id="ChefWSAppDesktopShortcut" Guid="91f753ca-d87b-4ef2-915c-2183bef16177">
-					<Shortcut Id="ChefAppWSDesktopShortcutDef"
+					<Shortcut Id="ChefWSAppDesktopShortcutDef"
 						Name="!(loc.ChefWSAppShortcutName)"
-						Description="!(loc.ChefWSAppShortcutDescription)"
+						Description="!(loc.ChefWSAppShortcutDesc)"
 						Target="[WSAPPDIR]\Chef Workstation App.exe"
 						Icon="cws.ico"/>
 				</Component>
@@ -181,18 +181,25 @@
 		</Directory>
 
 		<!-- Set the components defined in our fragment files that will be used for our feature  -->
+    <!-- Renders the following install options
+         [x] Chef Workstation
+           [x] Start Menu Shortcut
+           [x] Desktop Shortcut
+         [x] Experimental Features
+           [x] Chef Workstation App
+    -->
 		<Feature Id="ChefWSFeature" Title="!(loc.FeatureMainName)" Absent="disallow" AllowAdvertise="no" Level="1" ConfigurableDirectory="INSTALLLOCATION">
 			<ComponentGroupRef Id="ProjectDir" />
 			<ComponentRef Id="ChefWSPath" />
 			<ComponentRef Id="ChefPSModulePath" />
 			<ComponentRef Id="ChefPowerShellRegistryEntries" />
-			<Feature Id="ChefWSStartMenuPowershellShortcutFeature" Title="!(loc.FeatureChefWSStartMenuPowershellShortcut)"
-	             Description="!(loc.FeatureChefWSStartMenuPowershellShortcutDescription" Level="1" AllowAdvertise="no" >
+			<Feature Id="ChefWSStartMenuPSShortcutFeature" Title="!(loc.FeatureChefWSStartMenuPSShortcut)"
+	             Description="!(loc.FeatureChefWSStartMenuPSShortcutDescription" Level="1" AllowAdvertise="no" >
 				<ComponentRef Id="StartChefWSPowershellShortcut" />
 				<ComponentRef Id="PowershellStartMenuShortcut" />
 			</Feature>
-			<Feature Id="ChefWSDesktopPowershellShortcutFeature" Title="!(loc.FeatureChefWSDesktopPowershellShortcut)"
-               Description="!(loc.FeatureChefWSDesktopPowershellShortcutDescription)" Level="1" AllowAdvertise="no" >
+			<Feature Id="ChefWSDesktopPSShortcutFeature" Title="!(loc.FeatureChefWSDesktopPSShortcut)"
+               Description="!(loc.FeatureChefWSDesktopPSShortcutDesc)" Level="1" AllowAdvertise="no" >
 				<ComponentRef Id="StartChefWSPowershellShortcut" />
 				<ComponentRef Id="PowershellDesktopShortcut" />
 			</Feature>
@@ -201,7 +208,7 @@
 			</Feature>
 		</Feature>
 
-		<Feature Id="ExperimentalFeatures" Title="!(loc.FeatureExperimental)" Description="!(loc.FeatureExperimentalDescription)" Level="1000" AllowAdvertise="no" display="collapse">
+		<Feature Id="ExperimentalFeatures" Title="!(loc.FeatureExperimental)" Description="!(loc.FeatureExperimentalDesc)" Level="1000" AllowAdvertise="no" Display="collapse">
 			<Feature Id="ExperimentalChefWSApp" Title="!(loc.FeatureExperimentalChefWS)" Description="!(loc.FeatureExperimentalChefWSDescription">
 				<ComponentRef Id="ChefWSAppAutostartShortcut" />
 				<ComponentRef Id="ChefWSAppStartMenuShortcut" />
