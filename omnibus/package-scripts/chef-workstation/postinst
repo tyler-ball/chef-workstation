@@ -34,7 +34,7 @@ done
 
 if is_darwin; then
   echo "Moving Chef Workstation App to the Applications folder"
-  pushd $INSTALLER_DIR/components
+  pushd $INSTALLER_DIR/components/chef-workstation-app
   unzip chef-workstation-app-mac.zip
   sudo mv "mac/Chef Workstation App.app" /Applications
   rm -r mac

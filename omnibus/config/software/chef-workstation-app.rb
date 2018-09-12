@@ -20,7 +20,7 @@ skip_transitive_dependency_licensing
 license_file "LICENSE"
 
 source git: "https://github.com/chef/chef-workstation-app"
-default_version "SHACK-352/osx-builds" # TODO: "master"
+default_version "master"
 
 
 # These electron dependencies are pulled in/created
@@ -37,6 +37,7 @@ end
 build do
   block "do_build" do
     env = with_standard_compiler_flags(with_embedded_path)
+    app_version = JSON.parse(File.read(File.join(project_dir, "package.json")))["version"]
     node_tools_dir = ENV['omnibus_nodejs_dir']
     node_bin_path = windows? ? node_tools_dir : File.join(node_tools_dir, "bin")
     path_key = windows? ? "Path" : "PATH"
