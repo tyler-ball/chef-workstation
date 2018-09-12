@@ -19,9 +19,9 @@ license "Apache-2.0"
 skip_transitive_dependency_licensing
 license_file "LICENSE"
 
-source git: "https://github.com/chef/chef-workstation-tray"
-default_version "SHACK-352/osx-builds"
-# TODO: "master"
+source git: "https://github.com/chef/chef-workstation-app"
+default_version "SHACK-352/osx-builds" # TODO: "master"
+
 
 # These electron dependencies are pulled in/created
 # by this build. They may have dependendcies that aren't met
@@ -37,7 +37,6 @@ end
 build do
   block "do_build" do
     env = with_standard_compiler_flags(with_embedded_path)
-    app_version = JSON.parse(File.read(File.join(project_dir, "package.json")))["version"]
     node_tools_dir = ENV['omnibus_nodejs_dir']
     node_bin_path = windows? ? node_tools_dir : File.join(node_tools_dir, "bin")
     path_key = windows? ? "Path" : "PATH"
