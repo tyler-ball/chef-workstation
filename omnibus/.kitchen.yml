@@ -2,7 +2,7 @@ driver:
   name: vagrant
   forward_agent: yes
   synced_folders:
-    - ['..', '/home/vagrant/chef-workstation']
+    - ['..', '/Users/vagrant/chef-workstation', "create: true, type: :rsync"]
   customize:
     cpus: 2
     memory: 2048
@@ -24,6 +24,7 @@ platforms:
   - name: debian-7
   - name: ubuntu-16.04
   - name: ubuntu-14.04
+  - name: chef/macosx-10.11
 
 suites:
   - name: default

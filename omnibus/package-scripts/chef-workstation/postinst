@@ -36,9 +36,8 @@ for binary in $binaries; do
 done
 
 if is_darwin; then
-  cwa_path="$INSTALLER_DIR/components/chef-workstation-app/"
   echo "Moving Chef Workstation App to the Applications folder"
-  sudo cp -R "$cwa_path/Chef Workstation App.app" /Applications
+  sudo cp -R "$INSTALLER_DIR/components/chef-workstation-app/Chef Workstation App.app" /Applications
 else
   cwa_path ="$INSTALLER_DIR/components/chef-workstation-app/chef-workstation-app"
 
