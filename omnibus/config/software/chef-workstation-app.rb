@@ -19,7 +19,7 @@ license "Apache-2.0"
 skip_transitive_dependency_licensing
 license_file "LICENSE"
 
-source git: "https://github.com/chef/chef-workstation-tray"
+source git: "https://github.com/chef/chef-workstation-app"
 default_version "master"
 
 # These electron dependencies are pulled in/created
