@@ -37,9 +37,6 @@ end
 build do
   block "do_build" do
     env = with_standard_compiler_flags(with_embedded_path)
-    if mac_os_x?
-      env["CSC_NAME"] = "Developer ID Installer: Chef Software, Inc. (EU3VF8YLX2)"
-    end
     app_version = JSON.parse(File.read(File.join(project_dir, "package.json")))["version"]
     node_tools_dir = ENV['omnibus_nodejs_dir']
     node_bin_path = windows? ? node_tools_dir : File.join(node_tools_dir, "bin")
