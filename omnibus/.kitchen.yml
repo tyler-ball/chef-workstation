@@ -34,6 +34,6 @@ suites:
         build_user:          vagrant
         build_user_group:    vagrant
         build_user_password: vagrant
-        build_user_home:     /home/vagrant
-        build_dir:           /home/vagrant/chef-workstation/omnibus
+        build_user_home:     /Users/vagrant
+        build_dir:           /Users/vagrant/chef-workstation/omnibus
         install_dir:         /opt/chef-workstation

@@ -44,7 +44,7 @@ build do
     env[path_key] = "#{env[path_key]}#{separator}#{node_bin_path}"
 
     platform_name, artifact_name = if mac_os_x?
-                                     ["mac", "mac"]
+                                     ["mac", "Chef Workstation App-#{app_version}-mac.zip"]
                                    elsif linux?
                                      ["linux", "linux-unpacked"]
                                    elsif windows?
@@ -65,6 +65,11 @@ build do
     command "#{npm_bin} install", env: env
     command "#{npm_bin} run-script build-#{platform_name}", env: env
 
-    sync artifact_path, app_install_path
+    if mac?
+      target = File.join(app_install_path, "chef-workstation-app-#{platform_name}.zip")
+      copy artifact_path, target
+    else
+      sync artifact_path, app_install_path
+    end
   end
 end
