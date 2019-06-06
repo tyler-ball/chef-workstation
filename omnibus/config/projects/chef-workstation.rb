@@ -61,35 +61,35 @@ else
   dependency "git-custom-bindir"
 end
 
-# For the Delivery build nodes
-dependency "delivery-cli"
-# This is a build-time dependency, so we won't leave it behind:
-dependency "rust-uninstall"
+# # For the Delivery build nodes
+# dependency "delivery-cli"
+# # This is a build-time dependency, so we won't leave it behind:
+# dependency "rust-uninstall"
 
-dependency "chef-dk"
-dependency "chef-dk-gem-versions"
+# dependency "chef-dk"
+# dependency "chef-dk-gem-versions"
 
-dependency "gem-permissions"
-dependency "rubygems-customization"
-dependency "shebang-cleanup"
+# dependency "gem-permissions"
+# dependency "rubygems-customization"
+# dependency "shebang-cleanup"
 
-if windows?
-  dependency "chef-dk-env-customization"
-  dependency "chef-dk-powershell-scripts"
-end
+# if windows?
+#   dependency "chef-dk-env-customization"
+#   dependency "chef-dk-powershell-scripts"
+# end
 
-dependency "version-manifest"
-dependency "openssl-customization"
+# dependency "version-manifest"
+# dependency "openssl-customization"
 
-dependency "stunnel" if fips_mode?
+# dependency "stunnel" if fips_mode?
 
-# This *has* to be last, as it mutates the build environment and causes all
-# compilations that use ./configure et all (the msys env) to break
-if windows?
-  dependency "ruby-windows-devkit"
-  dependency "ruby-windows-devkit-bash"
-  dependency "ruby-windows-system-libraries"
-end
+# # This *has* to be last, as it mutates the build environment and causes all
+# # compilations that use ./configure et all (the msys env) to break
+# if windows?
+#   dependency "ruby-windows-devkit"
+#   dependency "ruby-windows-devkit-bash"
+#   dependency "ruby-windows-system-libraries"
+# end
 
 dependency "nodejs-binary"
 dependency "chef-workstation-app"

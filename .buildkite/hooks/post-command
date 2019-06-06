@@ -1,0 +1,16 @@
+
+#!/usr/bin/env bash
+
+# Test upgrading a non-all-in-one A1 install to A2.
+
+set -ex
+
+echo "Collecting logs"
+if command -v buildkite-agent
+then
+    if ! buildkite-agent artifact upload "/Users/buildkite-agent/AppData/Roaming/npm-cache/_logs/*"
+    then
+        echo "Failed to upload logs... Dumping"
+        cat "/Users/buildkite-agent/AppData/Roaming/npm-cache/_logs/*"
+    fi
+fi
